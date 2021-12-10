@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:tetris-writer.splitParagraph"
+        "onCommand:tetris-writer.splitParagraph",
+        "onCommand:tetris-writer.joinSentences"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -18,6 +19,10 @@
 			{
 				"command": "tetris-writer.splitParagraph",
 				"title": "TetrisWriter: Split paragraph into sentences"
+			},
+			{
+				"command": "tetris-writer.joinSentences",
+				"title": "TetrisWriter: Join sentences into a paragraph"
 			}
 		]
 	},

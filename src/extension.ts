@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('tetris-writer.splitParagraph', () => {
+	let splitParagraph = vscode.commands.registerCommand('tetris-writer.splitParagraph', () => {
 		// Get the active text editor
 		const editor = vscode.window.activeTextEditor;
 
@@ -23,14 +23,33 @@ export function activate(context: vscode.ExtensionContext) {
 
 			// Get the word within the selection
 			const word = document.getText(selection);
-			const splited = word.split('. ').join('.\n\n');
+			const splited = word.split('. ').map(s => s.trim()).join('.\n\n');
 			editor.edit(editBuilder => {
 				editBuilder.replace(selection, splited);
 			});
 		}
 	});
 
-	context.subscriptions.push(disposable);
+
+	let joinSentences = vscode.commands.registerCommand('tetris-writer.joinSentences', () => {
+		// Get the active text editor
+		const editor = vscode.window.activeTextEditor;
+
+		if (editor) {
+			const document = editor.document;
+			const selection = editor.selection;
+
+			// Get the word within the selection
+			const word = document.getText(selection);
+			const splited = word.split('\n').filter(s => s !== "").join(' ');
+			editor.edit(editBuilder => {
+				editBuilder.replace(selection, splited);
+			});
+		}
+	});
+
+	context.subscriptions.push(splitParagraph);
+	context.subscriptions.push(joinSentences);
 }
 
 // this method is called when your extension is deactivated
