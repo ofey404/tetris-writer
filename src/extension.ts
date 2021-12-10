@@ -29,8 +29,16 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			// Get the word within the selection
+			const delimiters = ['.', '?', '!', '.\"', '.\'', '。'];
+			const delimiterRegex = /(\.\'|\.\"|\.|\?|\!|。)/;
+
 			const word = document.getText(range);
-			const splited = word.split('.').map(s => s.trim()).join('.\n\n');
+			const splited = word.split(delimiterRegex).map(s => s.trim()).map(w => {
+				if (delimiters.includes(w)) {
+					return w + '\n\n';
+				}
+				return w;
+			}).join("");
 			editor.edit(editBuilder => {
 				editBuilder.replace(range, splited);
 			});
@@ -48,7 +56,16 @@ export function activate(context: vscode.ExtensionContext) {
 
 			// Get the word within the selection
 			const word = document.getText(selection);
-			const splited = word.split('\n').filter(s => s !== "").join(' ');
+
+			const endWithSpace = ['.', '?', '!', '.\"', '.\''];
+			const splited = word.split('\n').filter(s => s !== "").map(w => {
+				if (endWithSpace.includes(w)) {
+					return w + ' ';
+				}
+				else {
+					return w;
+				}
+			}).join('');
 			editor.edit(editBuilder => {
 				editBuilder.replace(selection, splited);
 			});
