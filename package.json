@@ -17,7 +17,7 @@
 		"commands": [
 			{
 				"command": "tetris-writer.splitParagraph",
-				"title": "TetrisWriter: Split paragraph"
+				"title": "TetrisWriter: Split paragraph into sentences"
 			}
 		]
 	},
