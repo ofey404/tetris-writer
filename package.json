@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:tetris-writer.helloWorld"
+        "onCommand:tetris-writer.splitParagraph"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "tetris-writer.helloWorld",
-				"title": "Hello World"
+				"command": "tetris-writer.splitParagraph",
+				"title": "TetrisWriter: Split paragraph"
 			}
 		]
 	},
