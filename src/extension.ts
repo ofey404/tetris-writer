@@ -46,7 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 
-	let joinSentences = vscode.commands.registerCommand('tetris-writer.joinSentences', () => {
+	let mergeSentences = vscode.commands.registerCommand('tetris-writer.mergeSentences', () => {
 		// Get the active text editor
 		const editor = vscode.window.activeTextEditor;
 
@@ -112,7 +112,7 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(splitParagraph);
-	context.subscriptions.push(joinSentences);
+	context.subscriptions.push(mergeSentences);
 	context.subscriptions.push(insertShortDate);
 	context.subscriptions.push(disposable);
 }
