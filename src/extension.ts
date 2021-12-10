@@ -55,6 +55,26 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
+
+	let insertShortDate = vscode.commands.registerCommand('tetris-writer.insertShortDate', () => {
+		// Get the active text editor
+		const editor = vscode.window.activeTextEditor;
+
+		if (editor) {
+			const document = editor.document;
+			const location = editor.selection.active;
+
+			const now = new Date();
+
+			const YY = (now.getFullYear() % 100).toString();
+			const MM = now.getMonth().toString();
+			const DD = now.getDate().toString();
+			editor.edit(editBuilder => {
+				editBuilder.insert(location, YY+MM+DD);
+			});
+		}
+	});
+
 	let disposable = vscode.commands.registerCommand('tetris-writer.playground', () => {
 		console.log('tetris-writer.playground is active.');
 
@@ -76,6 +96,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(splitParagraph);
 	context.subscriptions.push(joinSentences);
+	context.subscriptions.push(insertShortDate);
 	context.subscriptions.push(disposable);
 }
 

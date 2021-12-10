@@ -12,6 +12,7 @@
 	"activationEvents": [
         "onCommand:tetris-writer.splitParagraph",
         "onCommand:tetris-writer.joinSentences",
+        "onCommand:tetris-writer.insertShortDate",
         "onCommand:tetris-writer.playground"
 	],
 	"main": "./out/extension.js",
@@ -24,6 +25,10 @@
 			{
 				"command": "tetris-writer.splitParagraph",
 				"title": "TetrisWriter: Split paragraph into sentences"
+			},
+			{
+				"command": "tetris-writer.insertShortDate",
+				"title": "TetrisWriter: Insert short date format YYMMDD"
 			},
 			{
 				"command": "tetris-writer.joinSentences",
