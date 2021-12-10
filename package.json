@@ -11,11 +11,16 @@
 	],
 	"activationEvents": [
         "onCommand:tetris-writer.splitParagraph",
-        "onCommand:tetris-writer.joinSentences"
+        "onCommand:tetris-writer.joinSentences",
+        "onCommand:tetris-writer.playground"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
+			{
+				"command": "tetris-writer.playground",
+				"title": "TetrisWriter: Playground for learning API"
+			},
 			{
 				"command": "tetris-writer.splitParagraph",
 				"title": "TetrisWriter: Split paragraph into sentences"

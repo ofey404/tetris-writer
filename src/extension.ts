@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	
+
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "tetris-writer" is now active!');
@@ -20,12 +20,19 @@ export function activate(context: vscode.ExtensionContext) {
 		if (editor) {
 			const document = editor.document;
 			const selection = editor.selection;
+			var range: vscode.Range;
+
+			if (selection.isEmpty) {
+				range = document.lineAt(selection.active.line).range;
+			} else {
+				range = selection;
+			}
 
 			// Get the word within the selection
-			const word = document.getText(selection);
-			const splited = word.split('. ').map(s => s.trim()).join('.\n\n');
+			const word = document.getText(range);
+			const splited = word.split('.').map(s => s.trim()).join('.\n\n');
 			editor.edit(editBuilder => {
-				editBuilder.replace(selection, splited);
+				editBuilder.replace(range, splited);
 			});
 		}
 	});
@@ -48,9 +55,29 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
+	let disposable = vscode.commands.registerCommand('tetris-writer.playground', () => {
+		console.log('tetris-writer.playground is active.');
+
+		// Get the active text editor
+		const editor = vscode.window.activeTextEditor;
+
+		if (editor) {
+			const document = editor.document;
+			const line = document.lineAt(editor.selection.active.line);
+
+			const text = line.text;
+			// const line = document.getText();
+			vscode.window.showInformationMessage(text);
+			editor.edit(editBuilder => {
+				editBuilder.replace(line.range, "dummy");
+			});
+		}
+	});
+
 	context.subscriptions.push(splitParagraph);
 	context.subscriptions.push(joinSentences);
+	context.subscriptions.push(disposable);
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
