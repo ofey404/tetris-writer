@@ -1,4 +1,8 @@
-# tetris-writer README
+# Tetris Writer
+
+A toybox extension, to make writing article in vscode smoother.
+
+----
 
 This is the README for your extension "tetris-writer". After writing up a brief description, we recommend including the following sections.
 
