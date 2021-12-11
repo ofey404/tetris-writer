@@ -20,19 +20,19 @@
 		"commands": [
 			{
 				"command": "tetris-writer.splitParagraph",
-				"title": "TetrisWriter: Split paragraph into sentences"
+				"title": "Tetris Writer: Split paragraph into sentences"
 			},
 			{
 				"command": "tetris-writer.mergeSentences",
-				"title": "TetrisWriter: Merge sentences into a paragraph"
+				"title": "Tetris Writer: Merge/Join sentences into a paragraph"
 			},
 			{
 				"command": "tetris-writer.insertShortDate",
-				"title": "TetrisWriter: Insert short date format YYMMDD"
+				"title": "Tetris Writer: Insert short date format YYMMDD"
 			},
 			{
 				"command": "tetris-writer.playground",
-				"title": "TetrisWriter: Playground for learning API"
+				"title": "Tetris Writer: Playground for learning API"
 			}
 		]
 	},

@@ -57,15 +57,20 @@ export function activate(context: vscode.ExtensionContext) {
 			// Get the word within the selection
 			const word = document.getText(selection);
 
-			const endWithSpace = ['.', '?', '!', '.\"', '.\''];
+			const notEndWithSpace = ['。', '-'];
 			const splited = word.split('\n').filter(s => s !== "").map(w => {
-				if (endWithSpace.includes(w)) {
-					return w + ' ';
+				var noTrailingSpace = false;
+				for (const e of notEndWithSpace) {
+					if (w.endsWith(e)) {
+						noTrailingSpace = true;
+						break;
+					}
 				}
-				else {
+				if (noTrailingSpace) {
 					return w;
 				}
-			}).join('');
+				return w + ' ';
+			}).join('').trim();
 			editor.edit(editBuilder => {
 				editBuilder.replace(selection, splited);
 			});
