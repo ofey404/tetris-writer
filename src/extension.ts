@@ -83,7 +83,6 @@ export function activate(context: vscode.ExtensionContext) {
 		const editor = vscode.window.activeTextEditor;
 
 		if (editor) {
-			const document = editor.document;
 			const location = editor.selection.active;
 
 			const now = new Date();
@@ -96,6 +95,20 @@ export function activate(context: vscode.ExtensionContext) {
 			});
 		}
 	});
+
+	let insertLambda = vscode.commands.registerCommand('tetris-writer.insertLambda', () => {
+		// Get the active text editor
+		const editor = vscode.window.activeTextEditor;
+
+		if (editor) {
+			const location = editor.selection.active;
+
+			editor.edit(editBuilder => {
+				editBuilder.insert(location, "λ");
+			});
+		}
+	});
+
 
 	let disposable = vscode.commands.registerCommand('tetris-writer.playground', () => {
 		console.log('tetris-writer.playground is active.');
@@ -119,6 +132,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(splitParagraph);
 	context.subscriptions.push(mergeSentences);
 	context.subscriptions.push(insertShortDate);
+	context.subscriptions.push(insertLambda);
 	context.subscriptions.push(disposable);
 }
 

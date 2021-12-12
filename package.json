@@ -13,6 +13,7 @@
         "onCommand:tetris-writer.splitParagraph",
         "onCommand:tetris-writer.mergeSentences",
         "onCommand:tetris-writer.insertShortDate",
+        "onCommand:tetris-writer.insertLambda",
         "onCommand:tetris-writer.playground"
 	],
 	"main": "./out/extension.js",
@@ -29,6 +30,10 @@
 			{
 				"command": "tetris-writer.insertShortDate",
 				"title": "Tetris Writer: Insert short date format YYMMDD"
+			},
+			{
+				"command": "tetris-writer.insertLambda",
+				"title": "Tetris Writer: Insert λ (lambda)"
 			},
 			{
 				"command": "tetris-writer.playground",
