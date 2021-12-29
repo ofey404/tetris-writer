@@ -91,7 +91,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const MM = (now.getMonth() + 1).toString();
 			const DD = now.getDate().toString();
 			editor.edit(editBuilder => {
-				editBuilder.insert(location, YY+MM+DD);
+				editBuilder.insert(location, "## "+YY+MM+DD);
 			});
 		}
 	});
