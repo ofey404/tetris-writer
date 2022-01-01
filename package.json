@@ -14,6 +14,7 @@
         "onCommand:tetris-writer.mergeSentences",
         "onCommand:tetris-writer.insertShortDate",
         "onCommand:tetris-writer.insertLambda",
+        "onCommand:tetris-writer.insertCheckList",
         "onCommand:tetris-writer.playground"
 	],
 	"main": "./out/extension.js",
@@ -34,6 +35,10 @@
 			{
 				"command": "tetris-writer.insertLambda",
 				"title": "Tetris Writer: Insert λ (lambda)"
+			},
+			{
+				"command": "tetris-writer.insertCheckList",
+				"title": "Tetris Writer: Insert markdown checklist (task list)"
 			},
 			{
 				"command": "tetris-writer.playground",

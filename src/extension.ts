@@ -5,8 +5,7 @@ import * as vscode from "vscode";
 function registerCommand(
   context: vscode.ExtensionContext,
   command: string,
-  callback: (...args: any[]) => any,
-  thisArg?: any
+  callback: (...args: any[]) => any
 ) {
   let disposable = vscode.commands.registerCommand(command, callback);
   context.subscriptions.push(disposable);
@@ -97,22 +96,28 @@ function mergeSentences() {
   }
 }
 
-function insertShortDate() {
+function insertText(text: string) {
   // Get the active text editor
   const editor = vscode.window.activeTextEditor;
 
   if (editor) {
     const location = editor.selection.active;
-
-    const now = new Date();
-
-    const YY = (now.getFullYear() % 100).toString();
-    const MM = (now.getMonth() + 1).toString();
-    const DD = now.getDate().toString();
     editor.edit((editBuilder) => {
-      editBuilder.insert(location, "## " + YY + MM + DD);
+      editBuilder.insert(location, text);
     });
   }
+}
+
+function insertShortDate() {
+  const now = new Date();
+  const YY = (now.getFullYear() % 100).toString().padStart(2, "0");  // Though I don't think I can live so long!
+  const MM = (now.getMonth() + 1).toString().padStart(2, "0");
+  const DD = now.getDate().toString().padStart(2, "0");
+  insertText("## " + YY + MM + DD);
+}
+
+function insertCheckList() {
+  insertText("- [ ] ");
 }
 
 // this method is called when your extension is activated
@@ -122,8 +127,9 @@ export function activate(context: vscode.ExtensionContext) {
   registerCommand(context, "tetris-writer.mergeSentences", mergeSentences);
   registerCommand(context, "tetris-writer.insertShortDate", insertShortDate);
   registerCommand(context, "tetris-writer.insertLambda", insertLambda);
+  registerCommand(context, "tetris-writer.insertCheckList", insertCheckList);
 
-  // playground to try out new functionalities.
+  // EXAMPLE: playground to try out new functionalities.
   let disposable = vscode.commands.registerCommand(
     "tetris-writer.playground",
     () => {
